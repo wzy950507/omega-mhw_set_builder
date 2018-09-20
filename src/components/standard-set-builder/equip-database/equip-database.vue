@@ -34,18 +34,18 @@
             <el-form-item label="装备名称">
               <span v-text="selectedItem.name" />
             </el-form-item>
-            <el-table :data="[selectedItem]">
+            <el-table :data="[selectedItem.resist]">
               <el-table-column align="center" label="装备耐性">
-                <el-table-column align="center" label="火耐性" prop="resist[0]"></el-table-column>
-                <el-table-column align="center" label="水耐性" prop="resist[1]"></el-table-column>
-                <el-table-column align="center" label="雷耐性" prop="resist[2]"></el-table-column>
-                <el-table-column align="center" label="冰耐性" prop="resist[3]"></el-table-column>
-                <el-table-column align="center" label="龙耐性" prop="resist[4]"></el-table-column>
+                <el-table-column align="center" label="火耐性" prop="[0]"></el-table-column>
+                <el-table-column align="center" label="水耐性" prop="[1]"></el-table-column>
+                <el-table-column align="center" label="雷耐性" prop="[2]"></el-table-column>
+                <el-table-column align="center" label="冰耐性" prop="[3]"></el-table-column>
+                <el-table-column align="center" label="龙耐性" prop="[4]"></el-table-column>
               </el-table-column>
             </el-table>
             <el-form-item v-if="selectedItem.slots.map(i => i > 0).indexOf(true) !== -1" label="装备插槽">
               <div v-for="(slot, index) in selectedItem.slots" :key="index">
-                <span v-if="slot" v-text="`${index+1}级插槽${slot}个`" />
+                <span v-if="slot" v-text="`${slot}个${index+1}级插槽`" />
               </div>
             </el-form-item>
             <el-form-item v-if="selectedItem.skills" label="装备技能">

@@ -1,7 +1,7 @@
 <template>
   <el-collapse-item :name="level" :title="`${level}级槽`">
     <el-select v-for="i in count" v-model="selected[i-1]" value-key="name" :key="i" :placeholder="`请选择${level}级槽珠子`" @change="select(selected)" filterable clearable>
-      <el-option v-for="jewel in jewelList" :key="jewel.name" :value="jewel" :label="jewel.name" />
+      <el-option v-for="jewel in jewelList" :key="jewel.name" :value="jewel" :label="jewel.displayName" />
     </el-select>
   </el-collapse-item>
 </template>

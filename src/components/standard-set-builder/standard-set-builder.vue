@@ -33,10 +33,13 @@
             </el-table-column>
           </el-table-column>
         </el-table>
-        <el-alert v-for="(level, name) in skills" :key="name" v-text="`${level}级${name}`" :type="skillClass(name, level)"/>
+        <el-alert v-for="(level, name) in skills" :key="name" :title="`${level}级${name}`" :type="skillClass(name, level)"/>
         <h1>jewels: {{ jewels }}</h1>
       </el-col>
     </el-row>
+  </el-tab-pane>
+  <el-tab-pane label="高级配装" name="advanced-set-builder">
+    <advanced-set-builder />
   </el-tab-pane>
 </el-tabs>
 </template>
@@ -45,6 +48,7 @@
 import EquipDatabase from './equip-database/equip-database'
 import EquipSelector from './equip-selector/equip-selector'
 import SlotSelector from './equip-selector/slot-selector'
+import AdvancedSetBuilder from './advanced-set-builder/advanced-set-builder'
 import { getSkillMaxLevel } from './utils/data-builder'
 
 export default {
@@ -52,7 +56,8 @@ export default {
   components: {
     EquipDatabase,
     EquipSelector,
-    SlotSelector
+    SlotSelector,
+    AdvancedSetBuilder
   },
   data: function () {
     return {

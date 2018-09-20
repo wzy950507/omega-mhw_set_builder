@@ -33,7 +33,7 @@ function makeJewel (slot) {
     if (item.slot <= slot) {
       const jsonItem = JSON.stringify(item)
       const jewel = JSON.parse(jsonItem)
-      jewel.name = `${jewel.name}【${jewel.slot}】（${jewel.skill}）`
+      jewel.displayName = `${jewel.name}【${jewel.slot}】（${jewel.skill}）`
       jewel.maxLevel = getSkillMaxLevel(jewel.skill)
       jewels.push(jewel)
     }
@@ -46,7 +46,7 @@ function makeCharm () {
   database.charms.forEach(item => {
     const jsonItem = JSON.stringify(item)
     const charm = JSON.parse(jsonItem)
-    charm.name = `${charm.name}（${charm.skills[0].name}${charm.skills[1] ? `&${charm.skills[1].name}` : ''}）`
+    charm.displayName = `${charm.name}（${charm.skills[0].name}${charm.skills[1] ? `&${charm.skills[1].name}` : ''}）`
     charm.skills.forEach(skill => {
       skill.maxLevel = getSkillMaxLevel(skill.name)
     })
@@ -55,4 +55,36 @@ function makeCharm () {
   return charms
 }
 
-export { makeArmor, makeJewel, makeCharm, getSkillMaxLevel }
+function generateSuits() {
+  const armors = makeArmor()
+  let suits = []
+  makeCharm().forEach(charm => {
+    suits.push({
+      charm: charm
+    })
+  })
+  const armorParts = {
+    head: '头',
+    chest: '胸',
+    hand: '手',
+    waist: '腰',
+    leg: '腿'
+  }
+  for (let part in armorParts) {
+    const tmpSuits = []
+    armors.forEach(armor => {
+      if (armor.part === armorParts[part]) {
+        suits.forEach(item => {
+          const jsonItem = JSON.stringify(item)
+          const suit = JSON.parse(jsonItem)
+          suit[part] = armor
+          tmpSuits.push(suit)
+        })
+      }
+    })
+    suits = tmpSuits
+  }
+  return suits
+}
+
+export { makeArmor, makeJewel, makeCharm, getSkillMaxLevel, generateSuits }

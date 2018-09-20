@@ -3,7 +3,7 @@
   <el-row>
     <el-col :span="8">
       <el-select v-model="selected" value-key="name" :placeholder="`请选择${part}`" @change="select" filterable clearable>
-        <el-option v-for="equip in equipList" :key="equip.name" :label="equip.name" :value="equip" />
+        <el-option v-for="equip in equipList" :key="equip.name" :label="equip.displayName || equip.name" :value="equip" />
       </el-select>
     </el-col>
     <el-col :span="16">
