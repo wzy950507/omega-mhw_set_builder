@@ -114,7 +114,7 @@
             "part": "腿",
             "slots": [0, 0, 0],
             "skills": [{
-                "name": "体力恢复量UP",
+                "name": "体力回复量UP",
                 "level": 1
             }]
         }]
@@ -3019,6 +3019,9 @@
         "maxLevel": 1
     }, {
         "name": "攀岩者",
+        "maxLevel": 1
+    }, {
+        "name": "蹲下移动速度UP",
         "maxLevel": 1
     }]
 }
